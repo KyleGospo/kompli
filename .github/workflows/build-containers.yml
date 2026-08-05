@@ -189,6 +189,7 @@ jobs:
           retention-days: 1
 
       - name: Attest image build provenance
+        if: needs.pr-author-permission.outputs.is_collaborator == 'true'
         uses: actions/attest@508db95dd578ae2727ebd6217d5ba78e4fbda05d # v4.2.1
         with:
           subject-name: ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}
